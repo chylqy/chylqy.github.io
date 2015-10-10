@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Disable ssh timeout when connecting to/from Ubuntu | Vincent&#39;s Blog</title>
+  <title>Vincent&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Disable ssh timeout when connecting to/from Ubuntu">
-<meta property="og:url" content="http:/ifirst.ml/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/index.html">
+  <meta name="description" content="Ghh05R0CLC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vincent's Blog">
+<meta property="og:url" content="http:/ifirst.ml/baidu_verify_Ghh05R0CLC.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity">
-<meta property="og:updated_time" content="2015-10-10T11:03:52.821Z">
+<meta property="og:description" content="Ghh05R0CLC">
+<meta property="og:updated_time" content="2015-10-10T19:33:49.425Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Disable ssh timeout when connecting to/from Ubuntu">
-<meta name="twitter:description" content="When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity">
+<meta name="twitter:title" content="Vincent's Blog">
+<meta name="twitter:description" content="Ghh05R0CLC">
   
   
     <link rel="icon" href="favicon.png">
@@ -119,77 +119,27 @@
 </aside>
 
       
-      <section id="main"><article id="post-disable-ssh-timeout-when-connecting-to-from-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Disable ssh timeout when connecting to/from Ubuntu
-    </h1>
-  
-
-        <div class="article-meta">
-          
-  <div class="article-date">
-    <i class="fa fa-calendar"></i>
-    <a href="/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/">
-      <time datetime="2015-10-10T10:46:16.000Z" itemprop="datePublished">2015-10-10</time>
-    </a>
-  </div>
-
-
-          
-        </div>
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
                 
-        <p>  When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity.<br><a id="more"></a><br>This is annoying because you need to open a new console instance and reconnect and perform any other steps you need before connecting.</p>
-<p>Since using SSH to connect to remote servers is very common and linux being as old as it is, you would think that someone somewhere would have provided a solution for this problem by now; you’d be right.</p>
-<h2 id="SSH_Client_Configuration">SSH Client Configuration</h2><p>Open file /etc/ssh/ssh_config and set directive ServerAliveInterval to a value like 100:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># other configs</span></span><br><span class="line">ServerAliveInterval <span class="number">100</span></span><br></pre></td></tr></table></figure></p>
-<p>This causes your SSH client to send keep-alive messages every 100 seconds so that the server doesn’t drop your connection.</p>
-<h2 id="Server_Configuration">Server Configuration</h2><p>You must also configure the SSH remote Server you are connecting to (or ask whoever is responsible for doing it). Open file /etc/ssh/sshd_config and add these configurations at the end of the file to ensure they’re not overriden by later lines:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># other configs</span></span><br><span class="line">ClientAliveInterval <span class="number">600</span></span><br><span class="line">TCPKeepAlive yes</span><br><span class="line">ClientAliveCountMax <span class="number">30</span></span><br></pre></td></tr></table></figure></p>
-<p>These are conservative settings that will make your SSH Server only disconnect after (600 *30 = 18000) seconds of user inactivity. Customize these if you need more.</p>
-<h2 id="References">References</h2><p><a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/sshd_config.5?query=sshd_config" target="_blank" rel="external">Official Docs for Configuring sshd_config</a></p>
-
+        Ghh05R0CLC
       
     </div>
     <footer class="article-footer">
-      <a data-url="http:/ifirst.ml/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/" data-id="ciflglnc4000jq1qjb6cccfc6" class="article-share-link">Share</a>
+      <a data-url="http:/ifirst.ml/baidu_verify_Ghh05R0CLC.html" data-id="ciflhkppc00000cqj48ri3i4r" class="article-share-link">Share</a>
       
-        <a href="http:/ifirst.ml/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http:/ifirst.ml/baidu_verify_Ghh05R0CLC.html#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh-timeout/">ssh timeout</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-
     </footer>
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/2015/10/10/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">在线Markdown编辑器--Cmd Maarkdown</div>
-    </a>
-  
-</nav>
-
 
   
 </article>
