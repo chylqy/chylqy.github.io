@@ -1,6 +1,6 @@
 
  <!DOCTYPE HTML>
-<html lang="en">
+<html lang="default">
 <head>
   <meta charset="UTF-8">
   
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/blog/" title="Vincent&#39;s Blog">Vincent&#39;s Blog</a></h1>
 				<h2 class="blog-motto">life is boring!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,10 +63,10 @@
 					
 					<li>
  					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
+					<form class="search" action="/blog/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
 					
 					</li>
 				</ul>
@@ -87,14 +87,14 @@
 		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-10T10:46:16.000Z" itemprop="datePublished"> 發表於 2015-10-10</time>
+    <time datetime="2015-10-10T10:46:16.000Z" itemprop="datePublished"> Published 2015-10-10</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_Client_Configuration"><span class="toc-number">1.</span> <span class="toc-text">SSH Client Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server_Configuration"><span class="toc-number">2.</span> <span class="toc-text">Server Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">3.</span> <span class="toc-text">References</span></a></li></ol>
 		
@@ -165,22 +165,22 @@
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH_Client_Configuration"><span class="toc-number">1.</span> <span class="toc-text">SSH Client Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server_Configuration"><span class="toc-number">2.</span> <span class="toc-text">Server Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">3.</span> <span class="toc-text">References</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -233,7 +233,7 @@
 
   
   <div class="tagcloudlist">
-    <p class="asidetitle">標簽雲</p>
+    <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
        <a href="/blog/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/blog/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/blog/tags/Online-Editor/" style="font-size: 10px;">Online Editor</a> <a href="/blog/tags/apache/" style="font-size: 10px;">apache</a> <a href="/blog/tags/ftp-vsftpd/" style="font-size: 10px;">ftp vsftpd</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/lsusb/" style="font-size: 10px;">lsusb</a> <a href="/blog/tags/port/" style="font-size: 10px;">port</a> <a href="/blog/tags/ssh-timeout/" style="font-size: 10px;">ssh timeout</a> <a href="/blog/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/blog/tags/插入图片-音乐-视频/" style="font-size: 10px;">插入图片 音乐 视频</a>
     </div>
@@ -241,7 +241,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -260,7 +260,7 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -301,10 +301,11 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		© 2013-2015
 		
 		<a href="/blog/about" target="_blank" title="Vincent">Vincent</a>
 		
+                 ——  Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a>  
 		
 		</p>
 </div>
@@ -401,9 +402,9 @@ $(document).ready(function(){
   '<a class="overlay" id="qrcode"></a>',
   '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
   '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="Wechat"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="Renren"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
   '<span title="Share to"></span>'
   ].join('');
   $this.append(html);
@@ -499,7 +500,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/blog/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/blog/img/scrollup.png"/></a>
 	</div>
 	<script src="/blog/js/totop.js"></script>
 
@@ -512,23 +513,6 @@ $(document).ready(function(){
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
-
-<script>
-var option = {
-  engineKey: '3a2f184696a4b177074b'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
 
 <!-- Tiny_search End -->
 

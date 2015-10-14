@@ -4,26 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器 | Vincent&#39;s Blog</title>
+    <title>about | Vincent&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Vincent">
     
 
     
-    <meta name="description" content="1.安装vsftpd软件包$ sudo apt-get update    # 安装前先更新软件包列表。
-$ sudo apt-get install vsftpd    #安装vsftpd软件包">
-<meta property="og:type" content="article">
-<meta property="og:title" content="利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器">
-<meta property="og:url" content="http:/ifirst.ml/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/index.html">
+    <meta name="description" content="Hello, I’m Vincent!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http:/ifirst.ml/blog/about/index.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="1.安装vsftpd软件包$ sudo apt-get update    # 安装前先更新软件包列表。
-$ sudo apt-get install vsftpd    #安装vsftpd软件包">
-<meta property="og:updated_time" content="2015-10-10T10:16:09.309Z">
+<meta property="og:description" content="Hello, I’m Vincent!">
+<meta property="og:updated_time" content="2015-10-14T08:45:29.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器">
-<meta name="twitter:description" content="1.安装vsftpd软件包$ sudo apt-get update    # 安装前先更新软件包列表。
-$ sudo apt-get install vsftpd    #安装vsftpd软件包">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="Hello, I’m Vincent!">
 <meta name="twitter:creator" content="@chylqy">
 
     
@@ -83,14 +80,14 @@ $ sudo apt-get install vsftpd    #安装vsftpd软件包">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/" title="利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器" itemprop="url">利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器</a>
+      <a href="/blog/about/index.html" title="about" itemprop="url">about</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-08T20:48:38.000Z" itemprop="datePublished"> Published 2015-10-08</time>
+    <time datetime="2015-10-14T08:44:17.000Z" itemprop="datePublished"> Published 2015-10-14</time>
     
   </p>
 </header>
@@ -99,62 +96,16 @@ $ sudo apt-get install vsftpd    #安装vsftpd软件包">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-安装vsftpd软件包"><span class="toc-number">1.</span> <span class="toc-text">1.安装vsftpd软件包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-修改vsftpd配置文件"><span class="toc-number">2.</span> <span class="toc-text">2.修改vsftpd配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-重启vsftpd服务"><span class="toc-number">3.</span> <span class="toc-text">3.重启vsftpd服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。"><span class="toc-number">4.</span> <span class="toc-text">4.登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。"><span class="toc-number">5.</span> <span class="toc-text">5.然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="1-安装vsftpd软件包">1.安装vsftpd软件包</h1><pre><code>$ sudo apt-<span class="keyword">get</span> update    <span class="comment"># 安装前先更新软件包列表。</span>
-$ sudo apt-<span class="keyword">get</span> install vsftpd    <span class="comment">#安装vsftpd软件包</span>
-</code></pre><p>   <a id="more"></a>安装过程中需要选择ftp服务运行方式，有stand alone 和 super daemon 两种方式， stand alone指的是一直运行vsftpd，占用资源，提供ftp服务。super daemon指的是有需要时由xinetd启动vsftpd服务。如果服务器不是那种长期开ftp，提供大量的上传下载服务的话，会选择后者。</p>
-<h1 id="2-修改vsftpd配置文件">2.修改vsftpd配置文件</h1><pre><code> $ sudo vi /etc/vsftpd.conf 
- <span class="comment">#启用stand alone模式,默认ftp服务监听端口为21</span>
- <span class="comment">#listen=YES</span>
- <span class="comment">#listen_port=21</span>
- <span class="comment">#connect_from_port_20=NO        #若为YES,则强制FTP－Data数据传送使用20端口</span>
-
- <span class="comment">#允许匿名访问</span>
- <span class="comment"># Allow anonymous FTP?</span>
- anonymous_<span class="built_in">enable</span>=YES    
-
- <span class="comment">#允许匿名上传</span>
- write_<span class="built_in">enable</span>=YES        
- anon_mkdir_write_<span class="built_in">enable</span>=YES    
- anon_upload_<span class="built_in">enable</span>=YES         
-
- <span class="comment">#允许重命名、删除文件，否则无法续传</span>
- anon_other_write_<span class="built_in">enable</span>=YES
-
- <span class="comment">#认证系统用户登录FTP,允许他们上传文件</span>
- <span class="built_in">local</span>_<span class="built_in">enable</span>=YES
- write_<span class="built_in">enable</span>=YES
-
- ＃仅能上传，无法下载.上传的文件所有者被改为root，其他用户就无法读取、下载了。
- write_<span class="built_in">enable</span>=YES
- anon_mkdir_write_<span class="built_in">enable</span>=YES
- anon_upload_<span class="built_in">enable</span>=YES
- chown_uploads=YES
- chown_username=root
-
- $ sudo vi /etc/passwd         <span class="comment">#从passwd文件里可以看到默认的ftp服务根目录是/srv/ftp </span>
- $ ls <span class="operator">-l</span> /srv
-drwxr-xr-x <span class="number">3</span> root ftp <span class="number">4096</span> ftp       ＃可看出匿名用户根目录所述者为root，并且其他用户没有写权限。
-</code></pre><p>注意2点：<br>1.匿名用户就是ftp，想要匿名用户写入，必须文件夹的权限为ftp可写。<br>2.匿名用户的根目录不允许写，所以根目录的权限绝对不能是ftp可写和其他用户可写，如果根目录所有者为ftp的话，所有者的权限也不能写。<br>所以解决方法是建个单独的public文件夹用于上传文件，设置其为ftp可写或”其他用户可写“<br>还可建个download文件夹只用于下载，设置其他用户没有写权限便可。<br>    $ cd /srv/ftp           #切换到FTP根目录<br>    $ mkdir public          #创建匿名用户上传目录<br>    $ sudo chmod 777 -R  public      #授予其他用户对public目录的写权限 </p>
-<h1 id="3-重启vsftpd服务">3.重启vsftpd服务</h1><pre><code><span class="variable">$ </span>sudo service vsftpd restart      
-</code></pre><h1 id="4-登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。">4.登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。</h1><h1 id="5-然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。">5.然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。</h1><pre><code><span class="comment">#匿名登录：用户名为anonymous，密码为空</span>
-<span class="variable">$ </span>ftp yourdomain/yourip
-<span class="variable">$ </span><span class="symbol">name:</span>anonymous
-<span class="variable">$ </span><span class="symbol">password:</span>
-<span class="variable">$ </span>ftp 
-</code></pre>  
+		<p>Hello, I’m Vincent!</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/blog/tags/ftp-vsftpd/">ftp vsftpd</a><a href="/blog/tags/ubuntu/">ubuntu</a>
-  </div>
 
 </div>
 
@@ -162,7 +113,7 @@ drwxr-xr-x <span class="number">3</span> root ftp <span class="number">4096</spa
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http:/ifirst.ml/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/" data-title="利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器 | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
+	  <div data-url="http:/ifirst.ml/blog/about/index.html" data-title="about | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -173,19 +124,6 @@ drwxr-xr-x <span class="number">3</span> root ftp <span class="number">4096</spa
    	       
 	</article>
 	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/blog/2015/10/09/insert-images-musics-vedios-to-blogs/" title="在文章中插入图片、音乐和视频的方法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  在文章中插入图片、音乐和视频的方法</span>
-</a>
-</div>
-
-
-</nav>
-
 	
 
 <section id="comments" class="comment">
@@ -200,7 +138,7 @@ drwxr-xr-x <span class="number">3</span> root ftp <span class="number">4096</spa
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-安装vsftpd软件包"><span class="toc-number">1.</span> <span class="toc-text">1.安装vsftpd软件包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-修改vsftpd配置文件"><span class="toc-number">2.</span> <span class="toc-text">2.修改vsftpd配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-重启vsftpd服务"><span class="toc-number">3.</span> <span class="toc-text">3.重启vsftpd服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。"><span class="toc-number">4.</span> <span class="toc-text">4.登录AWS控制台，进入instance的安全组设置，添加入站规则，允许端口21的tcp流量。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。"><span class="toc-number">5.</span> <span class="toc-text">5.然后就可以通过公网IP或域名从远程客户端连接此FTP服务器了。</span></a></li></ol>
+ 
  
   </div>
 
@@ -384,36 +322,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
   });
 });
 </script>

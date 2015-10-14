@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="default">
 <head>
   <meta charset="UTF-8">
   
@@ -11,37 +11,16 @@
     
 
     
-    <meta name="description" content="var option = {
-  engineKey: &apos;3a2f184696a4b177074b&apos;,
-  resultContainingElement: &apos;#ts-results-container&apos;,
-  renderStyle: &apos;new_page&apos;,
-  resultPageURL: /blog/search.html
-};
-(function(w,d,t,u,n,s,e){
-  s =">
+    <meta name="description" content="Record technology tips">
 <meta property="og:type" content="website">
 <meta property="og:title" content="search">
-<meta property="og:url" content="http:/ifirst.ml/blog/search.html">
+<meta property="og:url" content="http:/ifirst.ml/blog/search/index.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="var option = {
-  engineKey: &apos;3a2f184696a4b177074b&apos;,
-  resultContainingElement: &apos;#ts-results-container&apos;,
-  renderStyle: &apos;new_page&apos;,
-  resultPageURL: /blog/search.html
-};
-(function(w,d,t,u,n,s,e){
-  s =">
-<meta property="og:updated_time" content="2015-10-14T08:19:35.825Z">
+<meta property="og:description" content="Record technology tips">
+<meta property="og:updated_time" content="2015-10-14T10:58:58.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="search">
-<meta name="twitter:description" content="var option = {
-  engineKey: &apos;3a2f184696a4b177074b&apos;,
-  resultContainingElement: &apos;#ts-results-container&apos;,
-  renderStyle: &apos;new_page&apos;,
-  resultPageURL: /blog/search.html
-};
-(function(w,d,t,u,n,s,e){
-  s =">
+<meta name="twitter:description" content="Record technology tips">
 <meta name="twitter:creator" content="@chylqy">
 
     
@@ -70,7 +49,7 @@
 				<h1 class="site-name"><a href="/blog/" title="Vincent&#39;s Blog">Vincent&#39;s Blog</a></h1>
 				<h2 class="blog-motto">life is boring!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -84,10 +63,10 @@
 					
 					<li>
  					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
+					<form class="search" action="/blog/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
 					
 					</li>
 				</ul>
@@ -96,6 +75,27 @@
       </header>
       <div id="container">
         
+<div  id="main" class="page">
+  <div id='cse' style='width:100%;text-align:center'>loading search results, please wait a moment。</div>
+</div>
+<script src="http://www.google.com.hk/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+google.load('search', '1', {language : 'zh-CN',style: google.loader.themes.MINIMALIST});
+google.setOnLoadCallback(function(){
+  var customSearchControl = new google.search.CustomSearchControl('000521049773560824796:njondcfxlmi');
+  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  var options = new google.search.DrawOptions();
+  options.setAutoComplete(true);
+  customSearchControl.draw('cse', options);
+  var match = location.search.match(/q=([^&]*)(&|$)/);
+  if(match && match[1]){
+    var search = decodeURIComponent(match[1]); 
+    customSearchControl.execute(search);
+  }
+},true);
+</script>
+
+
       </div>
       <footer><div id="footer" >
 	
@@ -132,10 +132,11 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		© 2013-2015
 		
 		<a href="/blog/about" target="_blank" title="Vincent">Vincent</a>
 		
+                 ——  Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a>  
 		
 		</p>
 </div>
@@ -253,7 +254,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/blog/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/blog/img/scrollup.png"/></a>
 	</div>
 	<script src="/blog/js/totop.js"></script>
 
@@ -266,23 +267,6 @@ $(document).ready(function(){
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
-
-<script>
-var option = {
-  engineKey: '3a2f184696a4b177074b'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
 
 <!-- Tiny_search End -->
 

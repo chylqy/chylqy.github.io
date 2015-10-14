@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http:/ifirst.ml/blog/search.html</loc>
-    <lastmod>2015-10-14T08:19:35.825Z</lastmod>
+    <loc>http:/ifirst.ml/blog/search/index.html</loc>
+    <lastmod>2015-10-14T10:58:58.129Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http:/ifirst.ml/blog/about/index.html</loc>
+    <lastmod>2015-10-14T08:45:29.249Z</lastmod>
   </url>
   
   <url>
