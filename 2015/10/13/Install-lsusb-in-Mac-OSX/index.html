@@ -1,0 +1,533 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Install lsusb in Mac OSX | Vincent&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Vincent">
+    
+
+    
+    <meta name="description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install lsusb in Mac OSX">
+<meta property="og:url" content="http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/index.html">
+<meta property="og:site_name" content="Vincent's Blog">
+<meta property="og:description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
+<meta property="og:image" content="http:/ifirst.ml/blog/blog/gallery/lsusb.png">
+<meta property="og:updated_time" content="2015-10-13T17:14:33.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install lsusb in Mac OSX">
+<meta name="twitter:description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
+<meta name="twitter:creator" content="@chylqy">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Vincent&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/blog/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog/img/avatar.png">
+    <link rel="apple-touch-icon-precomposed" href="/blog/img/avatar.png">
+    
+    <link rel="stylesheet" href="/blog/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/blog/"><img src="/blog/img/avatar.png" alt="Vincent&#39;s Blog" title="Vincent&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog/" title="Vincent&#39;s Blog">Vincent&#39;s Blog</a></h1>
+				<h2 class="blog-motto">life is boring!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog/">Home</a></li>
+					
+						<li><a href="/blog/archives">Archives</a></li>
+					
+						<li><a href="/blog/about">About</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog/2015/10/13/Install-lsusb-in-Mac-OSX/" title="Install lsusb in Mac OSX" itemprop="url">Install lsusb in Mac OSX</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-13T14:50:59.000Z" itemprop="datePublished"> 發表於 2015-10-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First_one:_make_an_alias_in_bash_shell"><span class="toc-number">1.</span> <span class="toc-text">First one: make an alias in bash shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second_one:_install_lsusb_from_github"><span class="toc-number">2.</span> <span class="toc-text">Second one: install lsusb from github</span></a></li></ol>
+		
+		</div>
+		
+		<p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br><a id="more"></a></p>
+<h2 id="First_one:_make_an_alias_in_bash_shell">First one: make an alias in bash shell</h2><p>Although there is a built-in command “system_profiler SPUSBDataType” which one can list the usb devices, but it is too complex to remember, so we can make an alias for this command, it is done via .bash_profile file which lives in your home account directory, if the file does not exist, just create one.<br>Launch Terminal and type these command::<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~			<span class="comment">#go to your home directory</span></span><br><span class="line">$ ls <span class="operator">-a</span>			<span class="comment">#list contents including invisble files to see if the .bash_profile file already exists</span></span><br><span class="line">$ vim .bash_profile	<span class="comment">#open it if it exists, otherwise create it</span></span><br></pre></td></tr></table></figure></p>
+<p>Press “i” to edit the file, then type alias like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias lsusb=&#39;system_profiler SPUSBDataType&#39;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/gallery/lsusb.png" alt=""><br>Then press “ESC”, then type “:wq” to save and close the file.<br>Refresh the bash shell enviroment:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>That is it, now the alias will take effect.</p>
+<h2 id="Second_one:_install_lsusb_from_github">Second one: install lsusb from github</h2><ol>
+<li>Download and execute the software to install Git<br> <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">http://sourceforge.net/projects/git-osx-installer/</a></li>
+<li>Launch Terminal, clone the repository and copy to a location available in your PATH:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/jlhonora/lsusb.gi		<span class="comment">#clone the lsusb to localt</span></span><br><span class="line">$ sudo cp lsusb /usr/bin		<span class="comment">#copy the lsusb to a location available in your PATH</span></span><br></pre></td></tr></table></figure>
+<p>Now, you can use the lsusb command in bash shell already! And if you want to know the details of the lsusb, click this: <a href="https://github.com/jlhonora/lsusb" target="_blank" rel="external">jlhonora/lsusb</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/Mac-OSX/">Mac OSX</a><a href="/blog/tags/lsusb/">lsusb</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/" data-title="Install lsusb in Mac OSX | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/blog/2015/10/11/change-default-port-of-hexo/"  title="Change Default Port of Hexo">
+ <strong>下一篇：</strong><br/> 
+ <span>Change Default Port of Hexo
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First_one:_make_an_alias_in_bash_shell"><span class="toc-number">1.</span> <span class="toc-text">First one: make an alias in bash shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second_one:_install_lsusb_from_github"><span class="toc-number">2.</span> <span class="toc-text">Second one: install lsusb from github</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog/tags/ubuntu/" title="ubuntu">ubuntu<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/插入图片-音乐-视频/" title="插入图片 音乐 视频">插入图片 音乐 视频<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/Cmd-Markdown/" title="Cmd Markdown">Cmd Markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/apache/" title="apache">apache<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/ftp-vsftpd/" title="ftp vsftpd">ftp vsftpd<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/Online-Editor/" title="Online Editor">Online Editor<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/ssh-timeout/" title="ssh timeout">ssh timeout<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/port/" title="port">port<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/Mac-OSX/" title="Mac OSX">Mac OSX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/lsusb/" title="lsusb">lsusb<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">標簽雲</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/blog/tags/Cmd-Markdown/" style="font-size: 10px;">Cmd Markdown</a> <a href="/blog/tags/Mac-OSX/" style="font-size: 10px;">Mac OSX</a> <a href="/blog/tags/Online-Editor/" style="font-size: 10px;">Online Editor</a> <a href="/blog/tags/apache/" style="font-size: 10px;">apache</a> <a href="/blog/tags/ftp-vsftpd/" style="font-size: 10px;">ftp vsftpd</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/lsusb/" style="font-size: 10px;">lsusb</a> <a href="/blog/tags/port/" style="font-size: 10px;">port</a> <a href="/blog/tags/ssh-timeout/" style="font-size: 10px;">ssh timeout</a> <a href="/blog/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/blog/tags/插入图片-音乐-视频/" style="font-size: 10px;">插入图片 音乐 视频</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m Vincent in Google China. <br/>
+			This is my blog,  believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/chylqy" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/chylqy" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:chylqy@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/blog/about" target="_blank" title="Vincent">Vincent</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/blog/js/jquery-2.0.3.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+<script src="/blog/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'ifirst';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/blog/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: '3a2f184696a4b177074b'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

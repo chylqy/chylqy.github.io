@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Vincent's Blog]]></title>
   <subtitle><![CDATA[life is boring!]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="http:/ifirst.ml/"/>
-  <updated>2015-10-10T10:11:31.329Z</updated>
-  <id>http:/ifirst.ml/</id>
+  <link href="/blog/atom.xml" rel="self"/>
+  <link href="http:/ifirst.ml/blog/"/>
+  <updated>2015-10-13T17:14:33.205Z</updated>
+  <id>http:/ifirst.ml/blog/</id>
   
   <author>
     <name><![CDATA[Vincent]]></name>
@@ -15,9 +15,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Install lsusb in Mac OSX]]></title>
+    <link href="http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/"/>
+    <id>http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/</id>
+    <published>2015-10-13T14:50:59.000Z</published>
+    <updated>2015-10-13T17:14:33.205Z</updated>
+    <content type="html"><![CDATA[<p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br><a id="more"></a></p>
+<h2 id="First_one:_make_an_alias_in_bash_shell">First one: make an alias in bash shell</h2><p>Although there is a built-in command “system_profiler SPUSBDataType” which one can list the usb devices, but it is too complex to remember, so we can make an alias for this command, it is done via .bash_profile file which lives in your home account directory, if the file does not exist, just create one.<br>Launch Terminal and type these command::<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~			<span class="comment">#go to your home directory</span></span><br><span class="line">$ ls <span class="operator">-a</span>			<span class="comment">#list contents including invisble files to see if the .bash_profile file already exists</span></span><br><span class="line">$ vim .bash_profile	<span class="comment">#open it if it exists, otherwise create it</span></span><br></pre></td></tr></table></figure></p>
+<p>Press “i” to edit the file, then type alias like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias lsusb=&#39;system_profiler SPUSBDataType&#39;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/gallery/lsusb.png" alt=""><br>Then press “ESC”, then type “:wq” to save and close the file.<br>Refresh the bash shell enviroment:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>That is it, now the alias will take effect.</p>
+<h2 id="Second_one:_install_lsusb_from_github">Second one: install lsusb from github</h2><ol>
+<li>Download and execute the software to install Git<br> <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">http://sourceforge.net/projects/git-osx-installer/</a></li>
+<li>Launch Terminal, clone the repository and copy to a location available in your PATH:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/jlhonora/lsusb.gi		<span class="comment">#clone the lsusb to localt</span></span><br><span class="line">$ sudo cp lsusb /usr/bin		<span class="comment">#copy the lsusb to a location available in your PATH</span></span><br></pre></td></tr></table></figure>
+<p>Now, you can use the lsusb command in bash shell already! And if you want to know the details of the lsusb, click this: <a href="https://github.com/jlhonora/lsusb" target="_blank" rel="external">jlhonora/lsusb</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br>]]>
+    
+    </summary>
+    
+      <category term="Mac OSX" scheme="http:/ifirst.ml/blog/tags/Mac-OSX/"/>
+    
+      <category term="lsusb" scheme="http:/ifirst.ml/blog/tags/lsusb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Change Default Port of Hexo]]></title>
+    <link href="http:/ifirst.ml/blog/2015/10/11/change-default-port-of-hexo/"/>
+    <id>http:/ifirst.ml/blog/2015/10/11/change-default-port-of-hexo/</id>
+    <published>2015-10-11T07:48:18.000Z</published>
+    <updated>2015-10-11T07:54:54.005Z</updated>
+    <content type="html"><![CDATA[<p>/hexo/node_modules/hexo-server/index.js </p>
+<p>hexo.config.server = assign({<br>  port: 80,<br>  log: false,<br>  ip: ‘0.0.0.0’<br>}, hexo.config.server);</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>/hexo/node_modules/hexo-server/index.js </p>
+<p>hexo.config.server = assign({<br>  port: 80,<br>  log: false,<br>  ip: ‘0.0.0.0’<br>}, he]]>
+    </summary>
+    
+      <category term="hexo" scheme="http:/ifirst.ml/blog/tags/hexo/"/>
+    
+      <category term="port" scheme="http:/ifirst.ml/blog/tags/port/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http:/ifirst.ml/2015/10/10/hello-world/"/>
-    <id>http:/ifirst.ml/2015/10/10/hello-world/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/10/hello-world/"/>
+    <id>http:/ifirst.ml/blog/2015/10/10/hello-world/</id>
     <published>2015-10-10T19:01:04.097Z</published>
     <updated>2015-10-10T10:11:31.329Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
@@ -39,8 +88,8 @@
   
   <entry>
     <title><![CDATA[Disable ssh timeout when connecting to/from Ubuntu]]></title>
-    <link href="http:/ifirst.ml/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/"/>
-    <id>http:/ifirst.ml/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/"/>
+    <id>http:/ifirst.ml/blog/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/</id>
     <published>2015-10-10T10:46:16.000Z</published>
     <updated>2015-10-10T11:03:52.821Z</updated>
     <content type="html"><![CDATA[<p>  When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity.<br><a id="more"></a><br>This is annoying because you need to open a new console instance and reconnect and perform any other steps you need before connecting.</p>
@@ -56,16 +105,16 @@
     
     </summary>
     
-      <category term="ssh timeout" scheme="http:/ifirst.ml/tags/ssh-timeout/"/>
+      <category term="ssh timeout" scheme="http:/ifirst.ml/blog/tags/ssh-timeout/"/>
     
-      <category term="ubuntu" scheme="http:/ifirst.ml/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http:/ifirst.ml/blog/tags/ubuntu/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[在线Markdown编辑器--Cmd Maarkdown]]></title>
-    <link href="http:/ifirst.ml/2015/10/10/%E5%9C%A8%E7%BA%BFMarkdown%E7%BC%96%E8%BE%91%E5%99%A8-Cmd-Maarkdown/"/>
-    <id>http:/ifirst.ml/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/10/%E5%9C%A8%E7%BA%BFMarkdown%E7%BC%96%E8%BE%91%E5%99%A8-Cmd-Maarkdown/"/>
+    <id>http:/ifirst.ml/blog/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/</id>
     <published>2015-10-10T08:32:26.000Z</published>
     <updated>2015-10-10T10:17:40.661Z</updated>
     <content type="html"><![CDATA[<h1 id="欢迎使用_Cmd_Markdown_编辑阅读器">欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
@@ -157,16 +206,16 @@
     
     </summary>
     
-      <category term="Cmd Markdown" scheme="http:/ifirst.ml/tags/Cmd-Markdown/"/>
+      <category term="Cmd Markdown" scheme="http:/ifirst.ml/blog/tags/Cmd-Markdown/"/>
     
-      <category term="Online Editor" scheme="http:/ifirst.ml/tags/Online-Editor/"/>
+      <category term="Online Editor" scheme="http:/ifirst.ml/blog/tags/Online-Editor/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[ubuntu里apache开机自启动]]></title>
-    <link href="http:/ifirst.ml/2015/10/10/ubuntu%E9%87%8Capache%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/"/>
-    <id>http:/ifirst.ml/2015/10/10/ubuntu里apache开机自启动/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/10/ubuntu%E9%87%8Capache%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/"/>
+    <id>http:/ifirst.ml/blog/2015/10/10/ubuntu里apache开机自启动/</id>
     <published>2015-10-10T03:29:58.000Z</published>
     <updated>2015-10-10T10:09:09.581Z</updated>
     <content type="html"><![CDATA[<p>在ubuntu中只需要一个命令，就能禁止或者恢复apache服务开机自启动<br><a id="more"></a></p>
@@ -178,16 +227,16 @@
     
     </summary>
     
-      <category term="apache" scheme="http:/ifirst.ml/tags/apache/"/>
+      <category term="apache" scheme="http:/ifirst.ml/blog/tags/apache/"/>
     
-      <category term="ubuntu" scheme="http:/ifirst.ml/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http:/ifirst.ml/blog/tags/ubuntu/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[在文章中插入图片、音乐和视频的方法]]></title>
-    <link href="http:/ifirst.ml/2015/10/09/insert-images-musics-vedios-to-blogs/"/>
-    <id>http:/ifirst.ml/2015/10/09/insert-images-musics-vedios-to-blogs/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/"/>
+    <id>http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/</id>
     <published>2015-10-09T09:00:15.000Z</published>
     <updated>2015-10-10T16:48:38.177Z</updated>
     <content type="html"><![CDATA[<h2 id="插入图片">插入图片</h2><img src="http://ww4.sinaimg.cn/bmiddle/61e692a7jw1esx20ochsgj20hs0hs0vt.jpg">
@@ -208,14 +257,14 @@
     
     </summary>
     
-      <category term="插入图片 音乐 视频" scheme="http:/ifirst.ml/tags/%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87-%E9%9F%B3%E4%B9%90-%E8%A7%86%E9%A2%91/"/>
+      <category term="插入图片 音乐 视频" scheme="http:/ifirst.ml/blog/tags/%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87-%E9%9F%B3%E4%B9%90-%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器]]></title>
-    <link href="http:/ifirst.ml/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/"/>
-    <id>http:/ifirst.ml/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/"/>
+    <id>http:/ifirst.ml/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/</id>
     <published>2015-10-08T20:48:38.000Z</published>
     <updated>2015-10-10T10:16:09.309Z</updated>
     <content type="html"><![CDATA[<h1 id="1-安装vsftpd软件包">1.安装vsftpd软件包</h1><pre><code>$ sudo apt-<span class="keyword">get</span> update    <span class="comment"># 安装前先更新软件包列表。</span>
@@ -268,9 +317,9 @@ $ sudo apt-<span class="keyword">get</span> install vsftpd    <span class="comme
     
     </summary>
     
-      <category term="ftp vsftpd" scheme="http:/ifirst.ml/tags/ftp-vsftpd/"/>
+      <category term="ftp vsftpd" scheme="http:/ifirst.ml/blog/tags/ftp-vsftpd/"/>
     
-      <category term="ubuntu" scheme="http:/ifirst.ml/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http:/ifirst.ml/blog/tags/ubuntu/"/>
     
   </entry>
   
