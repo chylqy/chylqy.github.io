@@ -11,23 +11,21 @@
     
 
     
-    <meta name="description" content="/hexo/node_modules/hexo-server/index.js 
-hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.config.server);">
+    <meta name="description" content="The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Change Default Port of Hexo">
 <meta property="og:url" content="http:/ifirst.ml/blog/2015/10/11/change-default-port-of-hexo/index.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="/hexo/node_modules/hexo-server/index.js 
-hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.config.server);">
-<meta property="og:updated_time" content="2015-10-11T07:54:54.005Z">
+<meta property="og:description" content="The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:">
+<meta property="og:image" content="http:/ifirst.ml/blog/blog/gallery/port.png">
+<meta property="og:updated_time" content="2015-10-14T17:58:32.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Change Default Port of Hexo">
-<meta name="twitter:description" content="/hexo/node_modules/hexo-server/index.js 
-hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.config.server);">
+<meta name="twitter:description" content="The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:">
 <meta name="twitter:creator" content="@chylqy">
 
     
-    <link rel="alternative" href="/atom.xml" title="Vincent&#39;s Blog" type="application/atom+xml">
+    <link rel="alternative" href="atom.xml" title="Vincent&#39;s Blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/blog/img/favicon.ico">
@@ -68,13 +66,14 @@ hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.
  					
 					<form class="search" action="/blog/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="on" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
 				</ul>
 			</nav>			
 </div>
+
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
@@ -99,12 +98,17 @@ hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_Start_hexo_server_with_‘p’_option"><span class="toc-number">1.</span> <span class="toc-text">1. Start hexo server with ‘p’ option</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_modify_config_file"><span class="toc-number">2.</span> <span class="toc-text">2. modify config file</span></a></li></ol>
 		
 		</div>
 		
-		<p>/hexo/node_modules/hexo-server/index.js </p>
-<p>hexo.config.server = assign({<br>  port: 80,<br>  log: false,<br>  ip: ‘0.0.0.0’<br>}, hexo.config.server);</p>
+		<p>The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:<br><a id="more"></a></p>
+<h3 id="1-_Start_hexo_server_with_‘p’_option">1. Start hexo server with ‘p’ option</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo hexo s -p <span class="number">80</span>   <span class="comment"># hexo s = hexo server</span></span><br></pre></td></tr></table></figure>
+<p>This is just a temporary methods, you have to start hexo server with ‘p’ option to override the default port everytime.</p>
+<h3 id="2-_modify_config_file">2. modify config file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /hexo/node_modules/hexo-server/index.js</span><br><span class="line"></span><br><span class="line">hexo.config.server = assign(&#123;</span><br><span class="line">  port: <span class="number">4000</span>,     <span class="comment"># change 4000 to 80</span></span><br><span class="line">  <span class="built_in">log</span>: <span class="literal">false</span>,</span><br><span class="line">  ip: <span class="string">'0.0.0.0'</span></span><br><span class="line">&#125;, hexo.config.server);</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/gallery/port.png" alt=""></p>
+<p>If your Hexo’s version is earlier than version 3.0, the config file locates the root directory of your Hexo.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /hexo/_config.yml</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">4000</span>     <span class="comment">#change it</span></span><br></pre></td></tr></table></figure></p>
+<p>Then you can start Hexo server with ‘sudo hexo s’ command erverytime, the hexo server will run at port 80 now!</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -136,7 +140,7 @@ hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/blog/2015/10/13/Install-lsusb-in-Mac-OSX/" title="Install lsusb in Mac OSX">
+ <a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/" title="Install lsusb in Mac OSX">
   <strong>上一篇：</strong><br/>
   <span>
   Install lsusb in Mac OSX</span>
@@ -168,7 +172,7 @@ hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_Start_hexo_server_with_‘p’_option"><span class="toc-number">1.</span> <span class="toc-text">1. Start hexo server with ‘p’ option</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_modify_config_file"><span class="toc-number">2.</span> <span class="toc-text">2. modify config file</span></a></li></ol>
  
   </div>
 
@@ -258,7 +262,7 @@ hexo.config.server = assign({  port: 80,  log: false,  ip: ‘0.0.0.0’}, hexo.
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>

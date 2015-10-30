@@ -4,30 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>在文章中插入图片、音乐和视频的方法 | Vincent&#39;s Blog</title>
+    <title>Install lsusb in Mac OSX | Vincent&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Vincent">
     
 
     
-    <meta name="description" content="插入图片">
+    <meta name="description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在文章中插入图片、音乐和视频的方法">
-<meta property="og:url" content="http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/index.html">
+<meta property="og:title" content="Install lsusb in Mac OSX">
+<meta property="og:url" content="http:/ifirst.ml/blog/2015/10/13/install-lsusb-in-Mac-OSX/index.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="插入图片">
-<meta property="og:image" content="http://ww4.sinaimg.cn/bmiddle/61e692a7jw1esx20ochsgj20hs0hs0vt.jpg">
-<meta property="og:image" content="http:/ifirst.ml/blog/blog/gallery/a.png">
-<meta property="og:image" content="http:/ifirst.ml/blog/blog/gallery/goldenfall.jpg">
-<meta property="og:updated_time" content="2015-10-10T16:48:38.177Z">
+<meta property="og:description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
+<meta property="og:image" content="http:/ifirst.ml/blog/blog/gallery/lsusb.png">
+<meta property="og:updated_time" content="2015-10-13T17:14:33.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在文章中插入图片、音乐和视频的方法">
-<meta name="twitter:description" content="插入图片">
+<meta name="twitter:title" content="Install lsusb in Mac OSX">
+<meta name="twitter:description" content="In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:">
 <meta name="twitter:creator" content="@chylqy">
 
     
-    <link rel="alternative" href="/atom.xml" title="Vincent&#39;s Blog" type="application/atom+xml">
+    <link rel="alternative" href="atom.xml" title="Vincent&#39;s Blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/blog/img/favicon.ico">
@@ -68,13 +66,14 @@
  					
 					<form class="search" action="/blog/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="on" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
 				</ul>
 			</nav>			
 </div>
+
     </header>
     <div id="container">
       <div id="main" class="post" itemscope itemprop="blogPost">
@@ -83,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/blog/2015/10/09/insert-images-musics-vedios-to-blogs/" title="在文章中插入图片、音乐和视频的方法" itemprop="url">在文章中插入图片、音乐和视频的方法</a>
+      <a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/" title="Install lsusb in Mac OSX" itemprop="url">Install lsusb in Mac OSX</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-09T09:00:15.000Z" itemprop="datePublished"> Published 2015-10-09</time>
+    <time datetime="2015-10-13T14:50:59.000Z" itemprop="datePublished"> Published 2015-10-13</time>
     
   </p>
 </header>
@@ -99,22 +98,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入图片"><span class="toc-number">1.</span> <span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入音乐"><span class="toc-number">2.</span> <span class="toc-text">插入音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入视频"><span class="toc-number">3.</span> <span class="toc-text">插入视频</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First_one:_make_an_alias_in_bash_shell"><span class="toc-number">1.</span> <span class="toc-text">First one: make an alias in bash shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second_one:_install_lsusb_from_github"><span class="toc-number">2.</span> <span class="toc-text">Second one: install lsusb from github</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="插入图片">插入图片</h2><img src="http://ww4.sinaimg.cn/bmiddle/61e692a7jw1esx20ochsgj20hs0hs0vt.jpg">
-<a id="more"></a>
-<p>使用markdown写文章，插入图片的格式为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](&#38142;&#25509;&#22320;&#22336;)   or   &#123;% img &#38142;&#25509;&#22320;&#22336; &#65285;&#125;  #&#20197;&#19978;&#20004;&#31181;&#26041;&#27861;&#37117;&#21487;&#20197;</span><br></pre></td></tr></table></figure></p>
-<p>如果是网络图片，直接粘贴图片链接即可。对于hexo，使用本地路径：在/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为“/hexo/img/图片名称”。<br><img src="/blog/gallery/a.png" alt=""><br><img src="/blog/gallery/goldenfall.jpg" alt=""></p>
-<h2 id="插入音乐">插入音乐</h2><p>比如网易云音乐，找到喜欢的歌曲，点击分享按钮，把里面的代码复制下来，直接粘贴到博文中即可。<br>比如插入以下代码：</p>
-<pre><code>&lt;<span class="tag">iframe</span> frameborder=<span class="string">"no"</span> <span class="attribute">border</span>=<span class="string">"0"</span> marginwidth=<span class="string">"0"</span> marginheight=<span class="string">"0"</span> <span class="attribute">width</span>=<span class="number">330</span> <span class="attribute">height</span>=<span class="number">86</span> src=<span class="string">"http://music.163.com/outchain/player?type=2&amp;id=25706282&amp;auto=0&amp;height=66"</span>&gt;&lt;/iframe&gt;
-</code></pre><p>效果如下：</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" wdth="330" height="86" src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66"></iframe>
-
-<h2 id="插入视频">插入视频</h2><p>和插入音乐一样，先输入视频名称，换行后输入代码即可。<br>比如插入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;iframe width=480 height=400 src=&#34;http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1&#34; frameborder=0 allowfullscreen&#62;&#60;/iframe&#62;</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：</p>
-<iframe width="680" height="480" src="http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1" frameborder="0" allowfullscreen disableautoplay=""></iframe>
+		<p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br><a id="more"></a></p>
+<h2 id="First_one:_make_an_alias_in_bash_shell">First one: make an alias in bash shell</h2><p>Although there is a built-in command “system_profiler SPUSBDataType” which one can list the usb devices, but it is too complex to remember, so we can make an alias for this command, it is done via .bash_profile file which lives in your home account directory, if the file does not exist, just create one.<br>Launch Terminal and type these command::<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~			<span class="comment">#go to your home directory</span></span><br><span class="line">$ ls <span class="operator">-a</span>			<span class="comment">#list contents including invisble files to see if the .bash_profile file already exists</span></span><br><span class="line">$ vim .bash_profile	<span class="comment">#open it if it exists, otherwise create it</span></span><br></pre></td></tr></table></figure></p>
+<p>Press “i” to edit the file, then type alias like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias lsusb=&#39;system_profiler SPUSBDataType&#39;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/blog/gallery/lsusb.png" alt=""><br>Then press “ESC”, then type “:wq” to save and close the file.<br>Refresh the bash shell enviroment:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>That is it, now the alias will take effect.</p>
+<h2 id="Second_one:_install_lsusb_from_github">Second one: install lsusb from github</h2><ol>
+<li>Download and execute the software to install Git<br> <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">http://sourceforge.net/projects/git-osx-installer/</a></li>
+<li>Launch Terminal, clone the repository and copy to a location available in your PATH:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/jlhonora/lsusb.gi		<span class="comment">#clone the lsusb to localt</span></span><br><span class="line">$ sudo cp lsusb /usr/bin		<span class="comment">#copy the lsusb to a location available in your PATH</span></span><br></pre></td></tr></table></figure>
+<p>Now, you can use the lsusb command in bash shell already! And if you want to know the details of the lsusb, click this: <a href="https://github.com/jlhonora/lsusb" target="_blank" rel="external">jlhonora/lsusb</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -123,7 +121,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/blog/tags/插入图片-音乐-视频/">插入图片 音乐 视频</a>
+  <span></span> <a href="/blog/tags/Mac-OSX/">Mac OSX</a><a href="/blog/tags/lsusb/">lsusb</a>
   </div>
 
 </div>
@@ -132,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/" data-title="在文章中插入图片、音乐和视频的方法 | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
+	  <div data-url="http:/ifirst.ml/blog/2015/10/13/install-lsusb-in-Mac-OSX/" data-title="Install lsusb in Mac OSX | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -145,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/blog/2015/10/10/ubuntu里apache开机自启动/" title="ubuntu里apache开机自启动">
-  <strong>上一篇：</strong><br/>
-  <span>
-  ubuntu里apache开机自启动</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/blog/2015/10/08/set-ftp-server-on-ubuntu-via-vsftpd/"  title="利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器">
+<a href="/blog/2015/10/11/change-default-port-of-hexo/"  title="Change Default Port of Hexo">
  <strong>下一篇：</strong><br/> 
- <span>利用vsftpd在ubuntu(AWS EC2)中部署FTP服务器
+ <span>Change Default Port of Hexo
 </span>
 </a>
 </div>
@@ -178,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入图片"><span class="toc-number">1.</span> <span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入音乐"><span class="toc-number">2.</span> <span class="toc-text">插入音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入视频"><span class="toc-number">3.</span> <span class="toc-text">插入视频</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First_one:_make_an_alias_in_bash_shell"><span class="toc-number">1.</span> <span class="toc-text">First one: make an alias in bash shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second_one:_install_lsusb_from_github"><span class="toc-number">2.</span> <span class="toc-text">Second one: install lsusb from github</span></a></li></ol>
  
   </div>
 
@@ -268,7 +258,7 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>

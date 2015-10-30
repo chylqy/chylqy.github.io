@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[Install lsusb in Mac OSX]]></title>
-    <link href="http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/"/>
-    <id>http:/ifirst.ml/blog/2015/10/13/Install-lsusb-in-Mac-OSX/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/13/install-lsusb-in-Mac-OSX/"/>
+    <id>http:/ifirst.ml/blog/2015/10/13/install-lsusb-in-Mac-OSX/</id>
     <published>2015-10-13T14:50:59.000Z</published>
     <updated>2015-10-13T17:14:33.205Z</updated>
     <content type="html"><![CDATA[<p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br><a id="more"></a></p>
@@ -48,13 +48,18 @@
     <link href="http:/ifirst.ml/blog/2015/10/11/change-default-port-of-hexo/"/>
     <id>http:/ifirst.ml/blog/2015/10/11/change-default-port-of-hexo/</id>
     <published>2015-10-11T07:48:18.000Z</published>
-    <updated>2015-10-11T07:54:54.005Z</updated>
-    <content type="html"><![CDATA[<p>/hexo/node_modules/hexo-server/index.js </p>
-<p>hexo.config.server = assign({<br>  port: 80,<br>  log: false,<br>  ip: ‘0.0.0.0’<br>}, hexo.config.server);</p>
+    <updated>2015-10-14T17:58:32.497Z</updated>
+    <content type="html"><![CDATA[<p>The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:<br><a id="more"></a></p>
+<h3 id="1-_Start_hexo_server_with_‘p’_option">1. Start hexo server with ‘p’ option</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo hexo s -p <span class="number">80</span>   <span class="comment"># hexo s = hexo server</span></span><br></pre></td></tr></table></figure>
+<p>This is just a temporary methods, you have to start hexo server with ‘p’ option to override the default port everytime.</p>
+<h3 id="2-_modify_config_file">2. modify config file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /hexo/node_modules/hexo-server/index.js</span><br><span class="line"></span><br><span class="line">hexo.config.server = assign(&#123;</span><br><span class="line">  port: <span class="number">4000</span>,     <span class="comment"># change 4000 to 80</span></span><br><span class="line">  <span class="built_in">log</span>: <span class="literal">false</span>,</span><br><span class="line">  ip: <span class="string">'0.0.0.0'</span></span><br><span class="line">&#125;, hexo.config.server);</span><br></pre></td></tr></table></figure>
+<p><img src="/blog/gallery/port.png" alt=""></p>
+<p>If your Hexo’s version is earlier than version 3.0, the config file locates the root directory of your Hexo.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /hexo/_config.yml</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">4000</span>     <span class="comment">#change it</span></span><br></pre></td></tr></table></figure></p>
+<p>Then you can start Hexo server with ‘sudo hexo s’ command erverytime, the hexo server will run at port 80 now!</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>/hexo/node_modules/hexo-server/index.js </p>
-<p>hexo.config.server = assign({<br>  port: 80,<br>  log: false,<br>  ip: ‘0.0.0.0’<br>}, he]]>
+    <![CDATA[<p>The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:<br>]]>
+    
     </summary>
     
       <category term="hexo" scheme="http:/ifirst.ml/blog/tags/hexo/"/>
@@ -235,22 +240,18 @@
   
   <entry>
     <title><![CDATA[在文章中插入图片、音乐和视频的方法]]></title>
-    <link href="http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/"/>
-    <id>http:/ifirst.ml/blog/2015/10/09/insert-images-musics-vedios-to-blogs/</id>
+    <link href="http:/ifirst.ml/blog/2015/10/09/insert-images-musics-videos-to-blogs/"/>
+    <id>http:/ifirst.ml/blog/2015/10/09/insert-images-musics-videos-to-blogs/</id>
     <published>2015-10-09T09:00:15.000Z</published>
-    <updated>2015-10-10T16:48:38.177Z</updated>
+    <updated>2015-10-14T14:09:21.653Z</updated>
     <content type="html"><![CDATA[<h2 id="插入图片">插入图片</h2><img src="http://ww4.sinaimg.cn/bmiddle/61e692a7jw1esx20ochsgj20hs0hs0vt.jpg">
 <a id="more"></a>
 <p>使用markdown写文章，插入图片的格式为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](&#38142;&#25509;&#22320;&#22336;)   or   &#123;% img &#38142;&#25509;&#22320;&#22336; &#65285;&#125;  #&#20197;&#19978;&#20004;&#31181;&#26041;&#27861;&#37117;&#21487;&#20197;</span><br></pre></td></tr></table></figure></p>
-<p>如果是网络图片，直接粘贴图片链接即可。对于hexo，使用本地路径：在/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为“/hexo/img/图片名称”。<br><img src="/blog/gallery/a.png" alt=""><br><img src="/blog/gallery/goldenfall.jpg" alt=""></p>
+<p>如果是网络图片，直接粘贴图片链接即可。对于hexo，使用本地路径：在/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为“/hexo/img/图片名称”。</p>
 <h2 id="插入音乐">插入音乐</h2><p>比如网易云音乐，找到喜欢的歌曲，点击分享按钮，把里面的代码复制下来，直接粘贴到博文中即可。<br>比如插入以下代码：</p>
 <pre><code>&lt;<span class="tag">iframe</span> frameborder=<span class="string">"no"</span> <span class="attribute">border</span>=<span class="string">"0"</span> marginwidth=<span class="string">"0"</span> marginheight=<span class="string">"0"</span> <span class="attribute">width</span>=<span class="number">330</span> <span class="attribute">height</span>=<span class="number">86</span> src=<span class="string">"http://music.163.com/outchain/player?type=2&amp;id=25706282&amp;auto=0&amp;height=66"</span>&gt;&lt;/iframe&gt;
 </code></pre><p>效果如下：</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" wdth="330" height="86" src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66"></iframe>
-
-<h2 id="插入视频">插入视频</h2><p>和插入音乐一样，先输入视频名称，换行后输入代码即可。<br>比如插入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;iframe width=480 height=400 src=&#34;http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1&#34; frameborder=0 allowfullscreen&#62;&#60;/iframe&#62;</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：</p>
-<iframe width="680" height="480" src="http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1" frameborder="0" allowfullscreen disableautoplay=""></iframe>
+<iframe frameborder="0" border="o" marginwidth="0" marginheight="0" src="http://music.163.com/outchain/player?type=2&id=25706282&auto=0&height=66" width="360" height="86"></iframe><br>## 插入视频<br>和插入音乐一样，先输入视频名称，换行后输入代码即可。<br>比如插入如下代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% youtube PjGkVCAo8Fw %&#125;	<span class="comment">#'pjGkVCAo8Fw' is video_id in youtube</span></span><br><span class="line"> &lt;iframe width=<span class="number">480</span> height=<span class="number">400</span> src=<span class="string">"http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1"</span> frameborder=<span class="number">0</span> allowfullscreen&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><br><br>效果如下：<br><div class="video-container"><iframe src="//www.youtube.com/embed/PjGkVCAo8Fw" frameborder="0" allowfullscreen></iframe></div><br><iframe width="680" height="480" src="http://www.iqiyi.com/v_19rrknuywc.html#vfrm=2-3-0-1" frameborder="0" allowfullscreen disableautoplay=""></iframe>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="插入图片">插入图片</h2><img src="http://ww4.sinaimg.cn/bmiddle/61e692a7jw1esx20ochsgj20hs0hs0vt.jpg">]]>
