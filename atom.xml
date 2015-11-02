@@ -4,7 +4,7 @@
   <subtitle><![CDATA[life is boring!]]></subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   <link href="http:/ifirst.ml/blog/"/>
-  <updated>2015-10-13T17:14:33.205Z</updated>
+  <updated>2015-11-02T12:40:27.301Z</updated>
   <id>http:/ifirst.ml/blog/</id>
   
   <author>
@@ -13,6 +13,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[How to enable NTFS driver read-write in Mac OSX]]></title>
+    <link href="http:/ifirst.ml/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/"/>
+    <id>http:/ifirst.ml/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/</id>
+    <published>2015-11-02T04:45:21.000Z</published>
+    <updated>2015-11-02T12:40:27.301Z</updated>
+    <content type="html"><![CDATA[<p>OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS has been required for those seeking full NTFS support.<br><a id="more"></a><br>    However, OS X does support writing to NTFS, but this feature is’nt enabled by default. We can enable this feature by a few simple steps.<br>    First,launch the Terminal program and run the following command to get the name fo your driver and edit the ‘/etc/fstab’ file which records the way the driver is automatically mounted when attached to Mac.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su root <span class="comment"># switch to root user</span></span><br><span class="line">***     <span class="comment"># input password of root user</span></span><br><span class="line">diskutil list    <span class="comment"># list all the drivers that attached to the Mac</span></span><br><span class="line">vim /etc/fstab  <span class="comment"># edit the fstab file</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ifirst.b0.upaiyun.com/get_driver_name.png" alt=""><br>    The Terminal should now show an editor window for the fstab file, in which you can enter the following all on one line. Be sure to change the word ‘your_driver’s_name’ to the name of your drive:<br>        LABLE=your_driver’s_name        none    ntfs    rw,auto,nobrowse ##<br><img src="http://ifirst.b0.upaiyun.com/edit_fstab_file.png" alt=""><br>  When finished, press ESC and input ‘:wq’ to save the file and exit the editor. Then unmount your NTFS driver and attach it again. The driver should be mounted read-write now, but you can’t find it in the Finder, you can go back to the Terminal and run the following command to reveal it.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /Volumes   <span class="comment"># the directory where the system mounts all attached drivers</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>In <span class="keyword">the</span> folder <span class="keyword">that</span> opens, you should see <span class="keyword">the</span> mounted NTFS driver, <span class="keyword">and</span> sould now be able <span class="keyword">to</span> <span class="keyword">copy</span> files <span class="keyword">to</span> <span class="keyword">it</span> <span class="keyword">or</span> manage files <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">it</span>. If you need <span class="keyword">to</span> access this driver frequently, you can drag <span class="keyword">it</span> <span class="keyword">to</span> <span class="keyword">the</span> sidebar, <span class="keyword">or</span> make an <span class="type">alias</span> <span class="keyword">of</span> <span class="keyword">it</span> <span class="keyword">in</span> <span class="keyword">the</span> location <span class="keyword">that</span> you prefer.
+Keep <span class="keyword">in</span> mind <span class="keyword">that</span> <span class="keyword">the</span> writing ablity <span class="keyword">of</span> Apple's NTFS driver <span class="keyword">is</span>'nt stablity, so use <span class="keyword">it</span> <span class="keyword">with</span> caution. If you are dealing <span class="keyword">with</span> important data, <span class="keyword">then</span> a virtual machine <span class="keyword">with</span> windows OS <span class="keyword">is</span> <span class="keyword">my</span> suggestion.
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS has been required for those seeking full NTFS support.<br>]]>
+    
+    </summary>
+    
+      <category term="mac osx" scheme="http:/ifirst.ml/blog/tags/mac-osx/"/>
+    
+      <category term="ntfs" scheme="http:/ifirst.ml/blog/tags/ntfs/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Install lsusb in Mac OSX]]></title>

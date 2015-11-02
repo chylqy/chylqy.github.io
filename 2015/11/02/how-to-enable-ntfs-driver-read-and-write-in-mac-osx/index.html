@@ -4,22 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Vincent&#39;s Blog</title>
+    <title>How to enable NTFS driver read-write in Mac OSX | Vincent&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Vincent">
     
 
     
-    <meta name="description" content="Record technology tips">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Vincent's Blog">
-<meta property="og:url" content="http:/ifirst.ml/blog/index.html">
+    <meta name="description" content="OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to enable NTFS driver read-write in Mac OSX">
+<meta property="og:url" content="http:/ifirst.ml/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/index.html">
 <meta property="og:site_name" content="Vincent's Blog">
-<meta property="og:description" content="Record technology tips">
+<meta property="og:description" content="OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS">
+<meta property="og:image" content="http://ifirst.b0.upaiyun.com/get_driver_name.png">
+<meta property="og:image" content="http://ifirst.b0.upaiyun.com/edit_fstab_file.png">
+<meta property="og:updated_time" content="2015-11-02T12:40:27.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vincent's Blog">
-<meta name="twitter:description" content="Record technology tips">
+<meta name="twitter:title" content="How to enable NTFS driver read-write in Mac OSX">
+<meta name="twitter:description" content="OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS">
 <meta name="twitter:creator" content="@chylqy">
 
     
@@ -74,12 +77,10 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/" title="How to enable NTFS driver read-write in Mac OSX" itemprop="url">How to enable NTFS driver read-write in Mac OSX</a>
@@ -93,18 +94,22 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <p>OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS has been required for those seeking full NTFS support.<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p>OS X mounts it read-only when you attach a NTFS-formatted driver to your Mac, so you can’t put anything into your driver. Therefore, the use of a third-party driver such as Paragon NTFS or Tuxera NTFS has been required for those seeking full NTFS support.<br><a id="more"></a><br>    However, OS X does support writing to NTFS, but this feature is’nt enabled by default. We can enable this feature by a few simple steps.<br>    First,launch the Terminal program and run the following command to get the name fo your driver and edit the ‘/etc/fstab’ file which records the way the driver is automatically mounted when attached to Mac.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su root <span class="comment"># switch to root user</span></span><br><span class="line">***     <span class="comment"># input password of root user</span></span><br><span class="line">diskutil list    <span class="comment"># list all the drivers that attached to the Mac</span></span><br><span class="line">vim /etc/fstab  <span class="comment"># edit the fstab file</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ifirst.b0.upaiyun.com/get_driver_name.png" alt=""><br>    The Terminal should now show an editor window for the fstab file, in which you can enter the following all on one line. Be sure to change the word ‘your_driver’s_name’ to the name of your drive:<br>        LABLE=your_driver’s_name        none    ntfs    rw,auto,nobrowse ##<br><img src="http://ifirst.b0.upaiyun.com/edit_fstab_file.png" alt=""><br>  When finished, press ESC and input ‘:wq’ to save the file and exit the editor. Then unmount your NTFS driver and attach it again. The driver should be mounted read-write now, but you can’t find it in the Finder, you can go back to the Terminal and run the following command to reveal it.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /Volumes   <span class="comment"># the directory where the system mounts all attached drivers</span></span><br></pre></td></tr></table></figure></p>
+<pre><code>In <span class="keyword">the</span> folder <span class="keyword">that</span> opens, you should see <span class="keyword">the</span> mounted NTFS driver, <span class="keyword">and</span> sould now be able <span class="keyword">to</span> <span class="keyword">copy</span> files <span class="keyword">to</span> <span class="keyword">it</span> <span class="keyword">or</span> manage files <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">it</span>. If you need <span class="keyword">to</span> access this driver frequently, you can drag <span class="keyword">it</span> <span class="keyword">to</span> <span class="keyword">the</span> sidebar, <span class="keyword">or</span> make an <span class="type">alias</span> <span class="keyword">of</span> <span class="keyword">it</span> <span class="keyword">in</span> <span class="keyword">the</span> location <span class="keyword">that</span> you prefer.
+Keep <span class="keyword">in</span> mind <span class="keyword">that</span> <span class="keyword">the</span> writing ablity <span class="keyword">of</span> Apple's NTFS driver <span class="keyword">is</span>'nt stablity, so use <span class="keyword">it</span> <span class="keyword">with</span> caution. If you are dealing <span class="keyword">with</span> important data, <span class="keyword">then</span> a virtual machine <span class="keyword">with</span> windows OS <span class="keyword">is</span> <span class="keyword">my</span> suggestion.
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -117,322 +122,49 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http:/ifirst.ml/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/" data-title="How to enable NTFS driver read-write in Mac OSX | Vincent&#39;s Blog" data-tsina="undefined" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/11/02/how-to-enable-ntfs-driver-read-and-write-in-mac-osx/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
 
 </footer>
 
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
 
-    </article>
+<div class="next">
+<a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/"  title="Install lsusb in Mac OSX">
+ <strong>下一篇：</strong><br/> 
+ <span>Install lsusb in Mac OSX
+</span>
+</a>
+</div>
 
+</nav>
 
+	
 
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/" title="Install lsusb in Mac OSX" itemprop="url">Install lsusb in Mac OSX</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-13T14:50:59.000Z" itemprop="datePublished"> Published 2015-10-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>In linux, we can use lsusb command in Bash Shell to list the usb devices, but it is abandoned in Mac OSX. Now, I found two ways to use lsusb command in Mac OSX:<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/blog/tags/Mac-OSX/">Mac OSX</a><a href="/blog/tags/lsusb/">lsusb</a>
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
+</section>
 
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/10/13/install-lsusb-in-Mac-OSX/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/blog/2015/10/11/change-default-port-of-hexo/" title="Change Default Port of Hexo" itemprop="url">Change Default Port of Hexo</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-11T07:48:18.000Z" itemprop="datePublished"> Published 2015-10-11</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>The default port of Hexo server is 4000, but the default port of http is 80, so you may want to change the port of Hexo server. There are two methods:<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/10/11/change-default-port-of-hexo/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/blog/tags/hexo/">hexo</a><a href="/blog/tags/port/">port</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/10/11/change-default-port-of-hexo/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/blog/2015/10/10/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-10T19:01:04.097Z" itemprop="datePublished"> Published 2015-10-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/10/10/hello-world/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/10/10/hello-world/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/blog/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/" title="Disable ssh timeout when connecting to/from Ubuntu" itemprop="url">Disable ssh timeout when connecting to/from Ubuntu</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-10T10:46:16.000Z" itemprop="datePublished"> Published 2015-10-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>  When using default configuration on Ubuntu, you might experience SSH Timeouts (i.e. the console you are using to connect to a remote server will seem to freeze) after a few minutes of lack of activity.<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/blog/tags/ssh-timeout/">ssh timeout</a><a href="/blog/tags/ubuntu/">ubuntu</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/10/10/disable-ssh-timeout-when-connecting-to-from-ubuntu/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/blog/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/" title="在线Markdown编辑器--Cmd Maarkdown" itemprop="url">在线Markdown编辑器--Cmd Maarkdown</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/blog/about" title="Vincent" target="_blank" itemprop="author">Vincent</a>
-		
-  <p class="article-time">
-    <time datetime="2015-10-10T08:32:26.000Z" itemprop="datePublished"> Published 2015-10-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="欢迎使用_Cmd_Markdown_编辑阅读器">欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
-<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/blog/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/blog/tags/Cmd-Markdown/">Cmd Markdown</a><a href="/blog/tags/Online-Editor/">Online Editor</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/blog/2015/10/10/在线Markdown编辑器-Cmd-Maarkdown/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/">Next<span></span></a>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -622,12 +354,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="Wechat"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="Renren"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -708,4 +517,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
